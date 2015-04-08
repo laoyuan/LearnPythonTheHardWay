@@ -1,33 +1,27 @@
 #coding: utf-8
 
-from sys import exit
 from random import choice
-
 
 def start():
     hands = ['rock', 'scissors', 'paper']
     print "Rock-Scissors-Paper game"
-    print "%s kill %s, %s kill %s, %s kill %s.\n" % (hands[0], hands[1], hands[1], hands[2], hands[2], hands[0])
+    print "%s kill %s, %s kill %s, %s kill %s." % (hands[0], hands[1], hands[1], hands[2], hands[2], hands[0])
     print "The computer can be smart or stupid."
-    print "Let's watch they play.\n\n"
+    print "Let's watch they play.\n"
 
-    play('', 100)
+    play(100)
 
 
-
-def play(type, count):
+def play(count):
     hands = ['rock', 'scissors', 'paper']
+    player = ['smart', 'stupid']
 
-    if type == '':
-        player = ['smart', 'stupid']
-    else:
-        player = ['you', type]
-    print "%s %s" % (player[0], player[1])
+    print "%s vs %s, start" % (player[0], player[1])
 
-    i = 0
+    i = 1
     score = [0, 0]
     while score[0] + score[1] < count:
-        if i == 0:
+        if i == 1:
             h1 = choice(hands)
             h2 = choice(hands)
         else:
@@ -36,14 +30,21 @@ def play(type, count):
             h2 = stupid(h1_last)
 
         r = compare(h1, h2)
-        print "%s vs %s = %s" % (h1, h2, r)
+        print "%d. %s : %s = %s" % (i, h1, h2, r),
         if r != 0:
             if r == 1:
                 score[0] += 1
             else:
                 score[1] += 1
-            print "%s win! score is %d : %d " % (player[r], score[0], score[1])
+            print "  %d : %d " % (score[0], score[1]),
+        print ""
         i += 1
+    if score[0] > score[1]:
+        print "Winer is %s" % player[0]
+    elif score[0] < score[1]:
+        print "Winer is %s" % player[1]
+    else:
+        print "Draw game!"
 
 
 def hand_win(hand):
@@ -65,7 +66,7 @@ def hand_lose(hand):
         return 'rock'
 
 def compare(h1, h2):
-    """win lose draw: return 1 -1 0"""
+    """win lose draw: 1 -1 0"""
     if h1 == hand_win(h2):
         return 1
     elif h1 == h2:
@@ -73,10 +74,9 @@ def compare(h1, h2):
     else:
         return -1
 
-
-def stupid(last_hand_opponent):
-    """stupid wanna win opponent's last hand."""
-    list = [hand_win(last_hand_opponent), hand_win(last_hand_opponent), last_hand_opponent]
+def stupid(last_hand):
+    """stupid just wanna win opponent's last hand."""
+    list = [hand_win(last_hand), hand_win(last_hand), last_hand]
     return choice(list)
 
 def smart(last_hand):
@@ -84,9 +84,6 @@ def smart(last_hand):
     list = [hand_lose(last_hand), hand_lose(last_hand), last_hand, hand_win(last_hand)]
     return choice(list)
 
-def dead(why):
-    print why, "Bye bye!"
-    exi
 
 start()
 
