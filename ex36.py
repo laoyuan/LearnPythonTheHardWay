@@ -11,7 +11,6 @@ def start():
     print "%s kill %s, %s kill %s, %s kill %s." % (hands[0], hands[1], hands[1], hands[2], hands[2], hands[0])
     print "The computer can be smart or stupid."
     print "Let's watch they play.\n"
-
     play(100)
 
 
@@ -86,7 +85,6 @@ def smart(last_hand):
     """smart wanna win stupid."""
     list = [hand_lose(last_hand), hand_lose(last_hand), hand_win(last_hand), last_hand]
     return choice(list)
-
 
 start()
 
