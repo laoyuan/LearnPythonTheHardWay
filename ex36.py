@@ -1,4 +1,7 @@
 #coding: utf-8
+"""
+石头剪子布 机机对战
+"""
 
 from random import choice
 
@@ -81,7 +84,7 @@ def stupid(last_hand):
 
 def smart(last_hand):
     """smart wanna win stupid."""
-    list = [hand_lose(last_hand), hand_lose(last_hand), last_hand, hand_win(last_hand)]
+    list = [hand_lose(last_hand), hand_lose(last_hand), hand_win(last_hand), last_hand]
     return choice(list)
 
 
