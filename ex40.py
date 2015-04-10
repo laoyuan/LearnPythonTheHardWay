@@ -25,9 +25,14 @@ while True:
     city_found = cities['_find'](cities, state)
     print city_found
 
+
 print not ""
 print not "0"
 print not "False"
+print not False
+print not 0
+print not 0.0
+
 
 for k in cities:
 	print k,cities[k]
