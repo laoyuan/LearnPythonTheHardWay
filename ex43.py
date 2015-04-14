@@ -19,20 +19,19 @@ class Game(object):
     
     def play(self, p1, p2, count):
         print "'%s' vs '%s' * %d, start" % (p1.player_name, p2.player_name, count)
-        hand_rules = HandRules()
 
         i = 1
         score = [0, 0]
         while score[0] + score[1] < count:
             if i == 1:
-                h1 = hand_rules.hand_random()
-                h2 = hand_rules.hand_random()
+                h1 = p1.hand_rules.hand_random()
+                h2 = p1.hand_rules.hand_random()
             else:
                 h1_last = h1
                 h1 = p1.this_hand(h1_last)
                 h2 = p2.this_hand(h1_last)
     
-            r = hand_rules.hand_compare(h1, h2)
+            r = p1.hand_rules.hand_compare(h1, h2)
             print "%d. %s : %s = %s" % (i, h1, h2, r),
             if r != 0:
                 if r == 1:
@@ -59,13 +58,14 @@ class Player(object):
         if not (which in self.players):
             print "player %s not found" % which
             exit(1)
+        self.hand_rules = HandRules()
 
     def this_hand(self, last_hand):
-        hand_rules = HandRules()
+
         if self.player_name == self.players[0]:
-            list = [hand_rules.hand_win(last_hand), hand_rules.hand_win(last_hand), last_hand]
+            list = [self.hand_rules.hand_win(last_hand), self.hand_rules.hand_win(last_hand), last_hand]
         else:
-            list = [hand_rules.hand_lose(last_hand), hand_rules.hand_lose(last_hand), hand_rules.hand_win(last_hand), last_hand]
+            list = [self.hand_rules.hand_lose(last_hand), self.hand_rules.hand_lose(last_hand), self.hand_rules.hand_win(last_hand), last_hand]
         return choice(list)
 
 
