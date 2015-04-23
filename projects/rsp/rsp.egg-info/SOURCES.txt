@@ -1,0 +1,12 @@
+setup.py
+bin/__init__.py
+bin/ex43.py
+bin/ex43_hand.py
+rsp/__init__.py
+rsp/rules.py
+rsp/run.py
+rsp.egg-info/PKG-INFO
+rsp.egg-info/SOURCES.txt
+rsp.egg-info/dependency_links.txt
+rsp.egg-info/requires.txt
+rsp.egg-info/top_level.txt

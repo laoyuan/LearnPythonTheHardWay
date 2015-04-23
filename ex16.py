@@ -23,6 +23,7 @@ line3 = raw_input("line 3: ")
 print "I'm going to write these to the file."
 
 target.write(line1 + "\n" + line2 + "\n" + line3 + "\n")
+target.write(("%s %s %s %s %s %s") %(line1, "\n", line2, "\n", line3, "\n"))
 
 print "And finally, we close it."
 target.close()

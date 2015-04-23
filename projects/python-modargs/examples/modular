@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+
+from modargs import args
+import sys
+
+if len(sys.argv) < 2:
+    print "USAGE: modular [loadme | commands] command <options>"
+    sys.exit(1)
+
+base = sys.argv.pop(1)
+commands = args.load_module("tests." + base)
+
+if not commands:
+        print "ERROR: Unsupported base command: %s. Try loadme or commands." % base
+        sys.exit(1)
+
+args.parse_and_run_command(sys.argv[1:], commands, default_command="blahblah")
+
